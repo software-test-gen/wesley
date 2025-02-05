@@ -1,0 +1,12 @@
+pandas
+datasets
+llama-cpp-python
+ollama
+torch
+transformers
+tqdm
+scikit-learn
+sctokenizer
+kagglehub
+faiss-cpu # use faiss-gpu maybe
+
