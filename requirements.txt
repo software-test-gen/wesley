@@ -9,4 +9,5 @@ scikit-learn
 sctokenizer
 kagglehub
 faiss-cpu # use faiss-gpu maybe
-
+matplotlib
+mlxtend

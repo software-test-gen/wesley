@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SESSION="SMC Cyber"
+SESSION="SMC_Cyber"
 SESSIONEXISTS=$(tmux list-sessions | grep $SESSION)
 
 # Only create tmux session if it doesn't already exist
