@@ -11,8 +11,10 @@ This repository provides a framework for analyzing and clustering vulnerable cod
 
 ## Installation and Setup
 ### Prerequisites
-Ensure you have Python 3.x installed and the following dependencies:
+Ensure you have Python 3.x installed. I recommend using a virtual enivronment to install the packages as shown below:
 ```bash
+python3 -m venv venv
+source venv/bin/activate # for Linux
 pip install -r requirements.txt
 ```
 
