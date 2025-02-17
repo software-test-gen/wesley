@@ -15,7 +15,7 @@ for i in range(index.ntotal):
     embeddings[i] = index.reconstruct(i)  # Reconstruct stored vectors
 
 # Cluster embeddings
-n_clusters = 5  # Choose based on data
+n_clusters = 15  # Arbitrary, TODO: find better way of assigning this (elbow method, silhouette score)
 kmeans = KMeans(n_clusters=n_clusters, random_state=42)
 clusters = kmeans.fit_predict(embeddings)
 
@@ -27,21 +27,8 @@ query_embedding = embeddings[0].reshape(1, -1)
 # Search for similar embeddings in FAISS
 D, I = index.search(query_embedding, 5)  # Find top-5 nearest vulnerabilities
 
-print(f"Top matches: {I}")
+print(f"Top matches I: {I}")
+print(f"Top matches D: {D}")
 
-# Reduce dimensions for visualization
-pca = PCA(n_components=2)
-reduced_embeddings = pca.fit_transform(embeddings)
+print("cluster counts: ", np.bincount(clusters))
 
-# Plot clusters
-plt.scatter(reduced_embeddings[:, 0], reduced_embeddings[:, 1], c=clusters, cmap='viridis')
-plt.colorbar()
-plt.show()
-
-# Convert embeddings into a binary format for mining
-df_encoded = pd.DataFrame((embeddings > 0.5).astype(int))  # Example thresholding
-frequent_patterns = apriori(df_encoded, min_support=0.1, use_colnames=True)
-
-# Generate association rules
-rules = association_rules(frequent_patterns, metric="confidence", min_threshold=0.7)
-print(rules.head())
