@@ -119,6 +119,11 @@ This repository provides a framework for analyzing and clustering vulnerable cod
 
 ---
 
+## Conclusion
+- Top 10 embedding dimensions contributing to vulnerability: 286, 155, 466, 259, 447, 507, 333, 749,  92, 588
+- Top 20 most characteristically vulnerable embedding indices: 101976, 190224, 119550, 158113, 118359, 258303, 230622, 137521,  13210, 244065, 132691, 244053,  13233,  49748, 184823, 13214, 244075, 86557, 13230, 244051
+
+
 ## Future Improvements
 - Experiment with **t-SNE** or **UMAP** for dimensionality reduction.
 
