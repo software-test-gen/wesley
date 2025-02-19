@@ -6,7 +6,7 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 
 # Load FAISS index
-index = faiss.read_index("faiss_index.bin")
+index = faiss.read_index("faiss_good.bin")
 
 # Get all embeddings
 embeddings = np.zeros((index.ntotal, 768))
