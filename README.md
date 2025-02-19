@@ -2,6 +2,7 @@
 
 ## Overview
 This repository provides a framework for analyzing and clustering vulnerable code snippets using **FAISS**, **CodeBERT**, **K-Means clustering**, **PCA Dimention Reduction**. The pipeline extracts vulnerable code from a dataset, embeds it using a transformer-based model, indexes it with FAISS for similarity search, and then clusters similar vulnerabilities for further analysis.
+*Note: inspiration and data was pulled from [this](https://arxiv.org/abs/2304.00409) study*
 
 ## Files in This Repository
 - **`compile_data.py`** - Downloads the dataset, preprocesses the data, generates embeddings for vulnerable code using **CodeBERT**, and indexes them using **FAISS**.
