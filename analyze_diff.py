@@ -60,3 +60,17 @@ important_features = np.argsort(np.abs(centroid_differences.mean(axis=0)))[-top_
 
 print(f"Top {top_k} embedding dimensions contributing to vulnerability:")
 print(important_features)
+
+### ----- Get embeddings that correlate the most to vulnerabilities
+# Number of top embeddings to find
+top_n = 20
+
+# Compute scores for all vulnerable embeddings
+# We sum the absolute values of the top vulnerability dimensions
+vulnerability_scores = np.abs(vulnerable_embeddings[:, important_features]).sum(axis=1)
+
+# Get indices of the top N most vulnerable embeddings
+top_vulnerable_indices = np.argsort(vulnerability_scores)[-top_n:]
+
+print(f"Top {top_n} most vulnerable embedding indices:")
+print(top_vulnerable_indices)

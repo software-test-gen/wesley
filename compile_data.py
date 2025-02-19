@@ -4,10 +4,7 @@ import numpy as np
 import faiss
 import pandas as pd
 from tqdm import tqdm
-import csv
 from sklearn.decomposition import PCA
-import time
-import os
 import kagglehub
 
 # If dataset not downloaded, grab it from kaggle
@@ -42,7 +39,7 @@ model = AutoModel.from_pretrained("microsoft/codebert-base")
 # FAISS index (using L2 similarity for this example)
 index = faiss.IndexFlatL2(768) # 768 for the dimention
 
-# Process rows and generate embeddings
+# Process rows and generate embeddings for "vulnerable" code
 for col, row in tqdm(df_bad.iterrows(), total=len(df_bad), desc="Processing rows"):
     # Tokenize code
     # Tokenize and process row
@@ -67,7 +64,37 @@ for col, row in tqdm(df_bad.iterrows(), total=len(df_bad), desc="Processing rows
     index.add(cls_embedding_np[np.newaxis, :])  # Add as a row to the FAISS index
 
     # Save FAISS index to a file
-    faiss.write_index(index, "faiss_index.bin")
+    faiss.write_index(index, "faiss_bad.bin")
     
 # Save the FAISS index to a file
-faiss.write_index(index, "faiss_index.bin")
+faiss.write_index(index, "faiss_bad.bin")
+
+# Process rows and generate embeddings for "safe" code
+for col, row in tqdm(df_good.iterrows(), total=len(df_good), desc="Processing rows"):
+    # Tokenize code
+    # Tokenize and process row
+    inputs = tokenizer.encode_plus(
+        row['func'], 
+        max_length=512, 
+        truncation=True, 
+        padding="max_length", 
+        return_tensors="pt"
+    )
+
+    tokens_tensor = inputs["input_ids"]
+
+    # Generate embeddings
+    with torch.no_grad():  # Disable gradients for efficiency
+        context_embeddings = model(tokens_tensor)[0]  # Get hidden states
+        cls_embedding = context_embeddings[:, 0, :]  # Extract the [CLS] embedding
+    
+    # print(f"CLS embedding shape: {cls_embedding.shape}")
+    # Convert to numpy and add to FAISS index
+    cls_embedding_np = cls_embedding.squeeze(0).cpu().numpy()  # Shape: (embedding_dim,)
+    index.add(cls_embedding_np[np.newaxis, :])  # Add as a row to the FAISS index
+
+    # Save FAISS index to a file
+    faiss.write_index(index, "faiss_good.bin")
+    
+# Save the FAISS index to a file
+faiss.write_index(index, "faiss_good.bin")
