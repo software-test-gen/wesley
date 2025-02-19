@@ -26,8 +26,8 @@ all_embeddings = np.vstack((good_embeddings, vulnerable_embeddings))
 all_labels = np.concatenate((good_labels, vulnerable_labels))
 
 # Select which set of embeddings to test
-test_embeddings = all_embeddings
-# test_embeddings = good_embeddings
+# test_embeddings = all_embeddings
+test_embeddings = good_embeddings
 # test_embeddings = vulnerable_embeddings
 
 
