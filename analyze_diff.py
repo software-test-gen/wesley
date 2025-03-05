@@ -38,7 +38,7 @@ plt.ylabel("PCA Dimension 2")
 plt.show()
 
 # Cluster embeddings separately
-n_clusters = 15  # Adjust based on dataset size
+n_clusters = 6  # Adjust based on dataset size
 
 print("Starting kMeans...")
 good_kmeans = KMeans(n_clusters=n_clusters, random_state=42).fit(good_embeddings)
@@ -63,7 +63,7 @@ print(important_features)
 
 ### ----- Get embeddings that correlate the most to vulnerabilities
 # Number of top embeddings to find
-top_n = 20
+top_n = 10
 
 # Compute scores for all vulnerable embeddings
 # We sum the absolute values of the top vulnerability dimensions

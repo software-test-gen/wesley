@@ -28,8 +28,8 @@ df_good_msg = df_good.drop(columns=['func', 'cwe'])
 df_good = df_good.reset_index(drop=True)
 
 # Try to seperate into good/bad code csv files
-df_good_msg.to_csv("good.csv", index=False)
-df_bad_msg.to_csv("bad.csv", index=False)
+df_good.to_csv("good.csv", index=False)
+df_bad.to_csv("bad.csv", index=False)
 
 # ----- Embedding Sections -----
 # Load pre-trained model and tokenizer
