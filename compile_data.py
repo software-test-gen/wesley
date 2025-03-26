@@ -19,17 +19,19 @@ df_divul = df_divul.drop(columns=['Unnamed: 0', 'commit_id', 'project', 'hash', 
 
 # Seperate bad code into a dataframe
 df_bad = df_divul[df_divul['cwe'] != '[]']
-df_bad_msg = df_bad.drop(columns=['func', 'cwe'])
+# df_bad = df_bad.drop(columns=['cwe', 'message'])
 df_bad = df_bad.reset_index(drop=True)
 
 # Seperate good code into a dataframe
 df_good = df_divul[df_divul['cwe'] == '[]']
-df_good_msg = df_good.drop(columns=['func', 'cwe'])
+# df_good = df_good.drop(columns=['cwe', 'message'])
 df_good = df_good.reset_index(drop=True)
 
 # Try to seperate into good/bad code csv files
 df_good.to_csv("good.csv", index=False)
 df_bad.to_csv("bad.csv", index=False)
+
+exit()
 
 # ----- Embedding Sections -----
 # Load pre-trained model and tokenizer
