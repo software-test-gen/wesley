@@ -19,16 +19,16 @@ def extract_values(filepath, cluster, indices):
         markdown_output.append(f"## CWE: `{row['cwe']}`\n")
         markdown_output.append("---")
     
-    output_file = f"cluster_report{cluster}.md"
+    output_file = f"reports/cluster_report{cluster}.md"
     with open(output_file, 'w', encoding='utf-8') as file:
         file.write("\n".join(markdown_output))
     print(f"Markdown output saved to {output_file}")
 
 if __name__ == "__main__":
-    csv_file = "bad.csv"  # CSV containing function data
-    index_file = "faiss_bad.bin"  # FAISS index file
+    csv_file = "datasets/bad.csv"  # CSV containing function data
+    index_file = "datasets/faiss_bad.bin"  # FAISS index file
     n_clusters = 6  # Number of clusters (can be adjusted)
-    n_funcs = 4  # Number of functions per cluster (can be adjusted)
+    n_funcs = 5  # Number of functions per cluster (can be adjusted)
 
     # Load FAISS index
     index = faiss.read_index(index_file)
