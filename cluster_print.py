@@ -5,8 +5,8 @@ from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
 # Load FAISS index (select the good/bad database)
-# index = faiss.read_index("faiss_good.bin")
-index = faiss.read_index("faiss_bad.bin")
+# index = faiss.read_index("datasets/faiss_good.bin")
+index = faiss.read_index("datasets/faiss_bad.bin")
 
 # Get all embeddings
 embeddings = np.zeros((index.ntotal, 768))

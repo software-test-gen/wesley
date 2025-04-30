@@ -2,8 +2,7 @@ venv/
 Code_Vulnerability_Security_DPO/
 DiverseVul/
 old_tests/
-good.csv
-bad.csv
+datasets/
 ./DiverseVul-Cleaned.csv
-*.bin
+
 

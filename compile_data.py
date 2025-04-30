@@ -28,8 +28,8 @@ df_good = df_divul[df_divul['cwe'] == '[]']
 df_good = df_good.reset_index(drop=True)
 
 # Try to seperate into good/bad code csv files
-df_good.to_csv("good.csv", index=False)
-df_bad.to_csv("bad.csv", index=False)
+df_good.to_csv("datasets/good.csv", index=False)
+df_bad.to_csv("datasets/bad.csv", index=False)
 
 exit()
 
@@ -66,10 +66,10 @@ for col, row in tqdm(df_bad.iterrows(), total=len(df_bad), desc="Processing rows
     index.add(cls_embedding_np[np.newaxis, :])  # Add as a row to the FAISS index
 
     # Save FAISS index to a file
-    faiss.write_index(index, "faiss_bad.bin")
+    faiss.write_index(index, "datasets/faiss_bad.bin")
     
 # Save the FAISS index to a file
-faiss.write_index(index, "faiss_bad.bin")
+# faiss.write_index(index, "faiss_bad.bin")
 
 # Process rows and generate embeddings for "safe" code
 for col, row in tqdm(df_good.iterrows(), total=len(df_good), desc="Processing rows"):
@@ -96,7 +96,7 @@ for col, row in tqdm(df_good.iterrows(), total=len(df_good), desc="Processing ro
     index.add(cls_embedding_np[np.newaxis, :])  # Add as a row to the FAISS index
 
     # Save FAISS index to a file
-    faiss.write_index(index, "faiss_good.bin")
+    faiss.write_index(index, "datasets/faiss_good.bin")
     
 # Save the FAISS index to a file
-faiss.write_index(index, "faiss_good.bin")
+# faiss.write_index(index, "faiss_good.bin")

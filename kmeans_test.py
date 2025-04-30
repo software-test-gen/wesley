@@ -13,8 +13,8 @@ def load_embeddings(faiss_file):
 
 print("Loading embeddings...")
 # Load good and vulnerable code embeddings
-good_embeddings = load_embeddings("faiss_good.bin")
-vulnerable_embeddings = load_embeddings("faiss_bad.bin")
+good_embeddings = load_embeddings("datasets/faiss_good.bin")
+vulnerable_embeddings = load_embeddings("datasets/faiss_bad.bin")
 
 # Add labels (0 = good, 1 = vulnerable)
 good_labels = np.zeros(good_embeddings.shape[0])
